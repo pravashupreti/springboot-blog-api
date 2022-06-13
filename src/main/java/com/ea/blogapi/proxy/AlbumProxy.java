@@ -38,7 +38,7 @@ public class AlbumProxy {
     }
 
 
-    @RequestMapping("")
+    @RequestMapping("**")
     public ResponseEntity publicAPIs(@RequestBody(required = false) String body, HttpMethod method, HttpServletRequest request) throws URISyntaxException {
         return commonProxy.forward(MEDIA_SERVICE_URL, MEDIA_SERVICE_PORT, new ProxyRequest(body, method, request));
 
