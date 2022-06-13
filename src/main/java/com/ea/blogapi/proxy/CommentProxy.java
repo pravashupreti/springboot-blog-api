@@ -43,7 +43,7 @@ public class CommentProxy {
     }
 
 
-    @RequestMapping("")
+    @RequestMapping("**")
     public ResponseEntity publicAPIs(@RequestBody(required = false) String body, HttpMethod method, HttpServletRequest request) throws URISyntaxException {
         return  commonProxy.forward(CONTENT_SERVICE_URL,CONTENT_SERVICE_PORT,new ProxyRequest(body, method,request));
 

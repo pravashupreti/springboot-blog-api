@@ -39,7 +39,7 @@ public class UserProxy {
     }
 
 
-    @RequestMapping("")
+    @RequestMapping("**")
     public ResponseEntity publicAPIs(@RequestBody(required = false) String body, HttpMethod method, HttpServletRequest request) throws URISyntaxException {
         return commonProxy.forward(USER_SERVICE_URL, USER_SERVICE_PORT, new ProxyRequest(body, method, request));
 
