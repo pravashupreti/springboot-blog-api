@@ -1,5 +1,6 @@
 package com.ea.blogapi.service.impl;
 
+import com.ea.blogapi.exception.ProxyException;
 import com.ea.blogapi.payload.ProxyRequest;
 import com.ea.blogapi.service.CommonProxyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,10 @@ public class CommonProxyImpl implements CommonProxyService {
         try {
             return restTemplate.exchange(uri, proxyRequest.getMethod(), httpEntity, String.class);
         } catch(HttpStatusCodeException e) {
-            return ResponseEntity.status(e.getRawStatusCode())
-                    .headers(e.getResponseHeaders())
-                    .body(e.getResponseBodyAsString());
+
+            throw new ProxyException( "Error from service "+ proxyServer + ":" + proxyPort + e.getResponseBodyAsString() );
+//                    e.getResponseHeaders() +  e.getResponseBodyAsString());
+
         }
     }
 }
